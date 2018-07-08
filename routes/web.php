@@ -11,6 +11,10 @@
 |
 */
 
+//FIRST ROUTE
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/', function()
 {
@@ -29,7 +33,11 @@ Route::get('contact', function()
     return View::make('pages.contact');
 });
 
-//FIRST ROUTE
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('tables',  array('as' => 'tables', 'uses' => 'Database\TablesController@tables'));
+Route::post('test', array('as' => 'test', 'uses' => 'Database\TablesController@query'));
+
+//Route::post('/index/add', array('as' => 'add', 'uses' => 'IndexController@add'));
+//Route::post('/index/remove', array('as' => 'remove', 'uses' => 'IndexController@remove'));
+//Route::post('/index/selectTable', array('as' => 'selectTable', 'uses' => 'IndexController@selectTable'));
+//Route::post('/index/selectTable/insert', array('as' => 'selectTable.insert', 'uses' => 'IndexController@selectTableInsert'));
+
