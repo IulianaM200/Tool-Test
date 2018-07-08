@@ -22,7 +22,6 @@ class TablesClass {
     {
         $columns = [];
         $columnsDescription = DB::select('describe '.$table_name);
-        //$columns = DB::getSchemaBuilder()->getColumnListing($table_name);
 
         $i = 0;
         foreach ($columnsDescription as $column)
@@ -42,13 +41,6 @@ class TablesClass {
 
     public function createTable($table_name, $table_columns)
     {
-//        Schema::create($table_name, function (Blueprint $table) use ($table_columns){
-//            $table->increments($table_columns[0]['name']);
-//            $table->string('name');
-//            $table->string('airline');
-//            $table->timestamps();
-//        });
-
         if(!Schema::hasTable($table_name))
         {
             Schema::create($table_name, function (Blueprint $table) use ($table_columns) {
@@ -75,10 +67,8 @@ class TablesClass {
                 }
                 $table->timestamps();
             });
-
             return true;
         }
-
         return false;
     }
 
