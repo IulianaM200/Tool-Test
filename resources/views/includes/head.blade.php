@@ -29,4 +29,17 @@
         color: white;
         text-align: center;
     }
+
+    #main{
+        margin-bottom: 50px;
+    }
+
+
+    .d-none{
+        display: none;
+    }
+
+    .d-block{
+        display: block;
+    }
 </style>

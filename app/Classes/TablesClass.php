@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 class TablesClass {
 
@@ -36,5 +38,27 @@ class TablesClass {
     public function getTableData($table_name)
     {
         return DB::table($table_name)->get()->toArray();
+    }
+
+    public function createTable($table_name, $table_columns)
+    {
+        if(!Schema::hasTable($table_name))
+        {
+            Schema::create($table_name, function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('airline');
+                $table->timestamps();
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function dropTable($table_name)
+    {
+        Schema::drop($table_name);
     }
 }

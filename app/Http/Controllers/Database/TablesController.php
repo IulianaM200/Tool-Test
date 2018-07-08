@@ -32,4 +32,20 @@ class TablesController extends Controller
 
         return json_encode($data);
     }
+
+    public function addTable(Request $request)
+    {
+        $table_name = $request->post('_table_name');
+
+        $table_columns = $request->post('_table_columns');
+
+        $new_table = $this->tables->createTable($table_name, $table_columns);
+
+        if($new_table == false) $message = "Table name is used!";
+        else $message = "Table successfully created";
+
+        $data = compact('table_name','table_columns', 'message');
+
+        return json_encode($data);
+    }
 }

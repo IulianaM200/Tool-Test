@@ -33,6 +33,12 @@
     <hr>
 
     <div class="row">
+        @include('database.addTable')
+    </div>
+
+    <hr>
+
+    <div class="row">
         <div class="col-sm-4">
             <h3>Operations</h3>
             <p>Create, update,delete.</p>
@@ -42,6 +48,7 @@
             <p>Table manipulation using query.</p>
         </div>
     </div>
+
 @stop
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

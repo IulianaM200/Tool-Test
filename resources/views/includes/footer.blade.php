@@ -1,1 +1,1 @@
-<div class="footer container" id="copyright text-right">Web Tool for everybody</div>
+<div class="footer container">Web Tool for everybody</div>
