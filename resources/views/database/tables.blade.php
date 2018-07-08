@@ -54,7 +54,7 @@
         var table_name = $(this).offsetParent().find('label').text();
 
         $.ajax({
-            url: "{{route('test')}}",
+            url: "{{route('tables/columns/data')}}",
             type: 'POST',
             // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
             data: {

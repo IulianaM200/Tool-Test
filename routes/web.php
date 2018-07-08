@@ -34,7 +34,7 @@ Route::get('contact', function()
 });
 
 Route::get('tables',  array('as' => 'tables', 'uses' => 'Database\TablesController@tables'));
-Route::post('test', array('as' => 'test', 'uses' => 'Database\TablesController@query'));
+Route::post('tablesColumnsAndData', array('as' => 'tables/columns/data', 'uses' => 'Database\TablesController@tablesColumnsAndData'));
 
 //Route::post('/index/add', array('as' => 'add', 'uses' => 'IndexController@add'));
 //Route::post('/index/remove', array('as' => 'remove', 'uses' => 'IndexController@remove'));

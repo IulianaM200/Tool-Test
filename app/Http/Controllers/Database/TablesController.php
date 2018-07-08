@@ -20,7 +20,7 @@ class TablesController extends Controller
         return View::make('database.tables', ['tables' => $this->tables->getTables()]);
     }
 
-    public function query(Request $request)
+    public function tablesColumnsAndData(Request $request)
     {
         $table_name = $request->post('_data');
 
