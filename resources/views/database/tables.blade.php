@@ -14,7 +14,10 @@
                 <label class="form-control">{{ $table }}</label>
 
                 <div class="input-group-append">
-                    <button class="btn btn-default" type="submit">Remove</button>
+                    @if($table == "migrations" || $table == "password_resets" || $table == "users")
+                    <button disabled class="btn btn-default" type="submit">Remove</button>
+                    @else <button class="btn btn-default" type="submit">Remove</button>
+                    @endif
                 </div>
             </div>
         @endforeach
@@ -41,7 +44,9 @@
     <div class="row">
         <div class="col-sm-4">
             <h3>Operations</h3>
-            <p>Create, update,delete.</p>
+            <p>Insert, update, delete.</p>
+
+            @include('database.insert')
         </div>
         <div class="col-sm-4">
             <h3>Query</h3>
@@ -54,16 +59,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
+    $(document).ready(function(){
+        $(".input-group-append").click(function () {
+            var table_name = $(this).parent().find('label').text();
+
+            $.ajax({
+                url: "{{route('tables/remove/table')}}",
+                type: 'POST',
+                data: {
+                    _method: 'POST',
+                    _token: '{{ csrf_token() }}',
+                    _table_name: table_name
+                }
+            }).done(function (response) {
+                window.location = "{{route('tables')}}";
+            });
+        });
+    });
+
     //Check only one checkbox. Select only one table to manipulate.
     $(document).on('click', 'input[type="checkbox"]', function() {
         $('input[type="checkbox"]').not(this).prop('checked', false);
-
         var table_name = $(this).offsetParent().find('label').text();
 
         $.ajax({
             url: "{{route('tables/columns/data')}}",
             type: 'POST',
-            // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
             data: {
                 _method: 'POST',
                 _token: '{{ csrf_token() }}',

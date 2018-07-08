@@ -89,7 +89,6 @@
         $.ajax({
             url: "{{route('tables/add/table')}}",
             type: 'POST',
-            // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
             data: {
                 _method: 'POST',
                 _token: '{{ csrf_token() }}',
@@ -97,9 +96,9 @@
                 _table_columns: columns
             }
         }).done(function (response) {
-            var data = JSON.parse(response);
-
-            console.log(data);
+            //var data = JSON.parse(response);
+            //console.log(data);
+            window.location = "{{route('tables')}}";
         });
 
         console.log(table_name, columns);

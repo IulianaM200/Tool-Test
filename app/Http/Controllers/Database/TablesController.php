@@ -7,14 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Classes\TablesClass;
 
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+
 class TablesController extends Controller
 {
     protected $tables;
+
+    protected $message;
 
     public function __construct()
     {
         $this->tables = new TablesClass();
     }
+
     public function tables()
     {
         return View::make('database.tables', ['tables' => $this->tables->getTables()]);
@@ -39,13 +45,26 @@ class TablesController extends Controller
 
         $table_columns = $request->post('_table_columns');
 
-        $new_table = $this->tables->createTable($table_name, $table_columns);
+        if($table_name != null & $table_columns != null)
+        {
+            $new_table = $this->tables->createTable($table_name, $table_columns);
 
-        if($new_table == false) $message = "Table name is used!";
-        else $message = "Table successfully created";
+            if($new_table == false) $message = "Table name is used!";
+            else $message = "Table successfully created";
+        }
 
         $data = compact('table_name','table_columns', 'message');
 
         return json_encode($data);
     }
+
+    public function removeTable(Request $request)
+    {
+        $table_name = $request->post('_table_name');
+        if($table_name != null)
+            $this->tables->dropTable($table_name);
+
+        return json_encode(['message'=> 'Remove table']);
+    }
+
 }
