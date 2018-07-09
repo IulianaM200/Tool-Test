@@ -94,10 +94,6 @@
                 window.location = "{{route('tables')}}";
             });
         });
-
-        $(".operation-insert").click(function () {
-            alert('insert');
-        });
     });
 
     //Check only one checkbox. Select only one table to manipulate.
@@ -136,7 +132,9 @@
             table_head += "<thead class='thead-dark'><tr>";
             for (var i in data['table_columns'] )
             {
-                table_head += "<th scope='col'>" + data['table_columns'][i]['field'] + "</th>";
+                var column = data['table_columns'][i]['field'];
+                if(column !== 'created_at' && column !== 'updated_at')
+                table_head += "<th scope='col'>" + column + "</th>";
             }
             table_head += "</tr></thead>";
         }
@@ -149,6 +147,7 @@
                 table_body += "<tr>";
                 for(var value in data['table_data'][i])
                 {
+                    if(value !== 'created_at' && value !== 'updated_at')
                     table_body += "<td>" + data['table_data'][i][value] + "</td>";
                 }
                 table_body += "</tr>";
