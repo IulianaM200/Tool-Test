@@ -1,4 +1,5 @@
-<h1>Next feature : insert into selected table</h1>
+<div class="operations">
+</div>
 
 <script>
     $(document).on('click', 'input[type="checkbox"]', function() {

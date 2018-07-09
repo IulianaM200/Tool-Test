@@ -37,6 +37,7 @@ Route::get('tables',  array('as' => 'tables', 'uses' => 'Database\TablesControll
 Route::post('tablesColumnsAndData', array('as' => 'tables/columns/data', 'uses' => 'Database\TablesController@tablesColumnsAndData'));
 Route::post('tablesAddTable', array('as' => 'tables/add/table', 'uses' => 'Database\TablesController@addTable'));
 Route::post('tablesRemoveTable', array('as' => 'tables/remove/table', 'uses' => 'Database\TablesController@removeTable'));
+Route::post('tablesInsert', array('as' => 'tables/insert', 'uses' => 'Database\TablesController@insert'));
 
 //Route::post('/index/add', array('as' => 'add', 'uses' => 'IndexController@add'));
 //Route::post('/index/remove', array('as' => 'remove', 'uses' => 'IndexController@remove'));

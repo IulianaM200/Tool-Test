@@ -16,10 +16,11 @@
     <div class="form-group table-column-number">
         <label for="add_table_column_number">Number of columns</label>
         <select multiple class="form-control" id="add_table_column_number">
-            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
+            <option>5</option>
+            <option>6</option>
         </select>
     </div>
 </div>
@@ -46,14 +47,31 @@
 
         for(var i = 0; i < table_column_number; i++)
         {
-            table +=
-                "<tr>" +
-                    "<td><input type='text' class='form-control table-column-name_"+i+"'></td>" +
+            if(i === 0)
+            {
+                table +=
+                    "<tr>" +
+                    "<td><input disabled type='text' value='id' class='form-control table-column-name_"+i+"'></td>" +
+
+                    "<td><select disabled class='form-control table-column-type_"+i+"'>" +
+                    "<option selected>INT</option>" +
+                    "</select></td>" +
+
+                    "<td><select disabled class='form-control table-column-size_"+i+"'>" +
+                    "<option selected>500</option>" +
+                    "</select></td>" +
+                    "</tr>";
+            }
+            else
+            {
+                table +=
+                    "<tr>" +
+                    "<td><input type='text' placeholder='Enter column name' class='form-control table-column-name_"+i+"'></td>" +
 
                     "<td><select class='form-control table-column-type_"+i+"'>" +
-                        "<option>VARCHAR</option>" +
-                        "<option>TEXT</option>" +
-                        "<option>INT</option>" +
+                    "<option>VARCHAR</option>" +
+                    "<option>TEXT</option>" +
+                    "<option>INT</option>" +
                     "</select></td>" +
 
                     "<td><select class='form-control table-column-size_"+i+"'>" +
@@ -61,7 +79,8 @@
                     "<option>250</option>" +
                     "<option>500</option>" +
                     "</select></td>" +
-                "</tr>";
+                    "</tr>";
+            }
         }
         table +=  "</table>";
 
@@ -101,7 +120,7 @@
             window.location = "{{route('tables')}}";
         });
 
-        console.log(table_name, columns);
+        //console.log(table_name, columns);
     });
 
 </script>

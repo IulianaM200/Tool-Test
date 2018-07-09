@@ -76,4 +76,9 @@ class TablesClass {
     {
         Schema::drop($table_name);
     }
+
+    public function insertIntoTable($table_name, $table_columns)
+    {
+        DB::table($table_name)->insert($table_columns);
+    }
 }

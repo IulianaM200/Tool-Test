@@ -64,4 +64,14 @@ class TablesController extends Controller
         return json_encode(['message'=> 'Remove table']);
     }
 
+    public function insert(Request $request)
+    {
+        $table_name = $request->get('table_name');
+
+        $table_columns = $request->get('table_columns');
+
+        $this->tables->insertIntoTable($table_name, $table_columns);
+
+        return redirect()->back();
+    }
 }
